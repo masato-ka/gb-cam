@@ -1,3 +1,5 @@
+import argparse
+
 import numpy as np
 import cv2
 
@@ -7,6 +9,10 @@ blank = np.zeros((257, 257, 3))
 blank += [0, 255, 0][::-1]  # RGBで青指定
 blank = blank.astype(np.float32)
 
+
+parser = argparse.ArgumentParser(description='Learning Racer command.')
+parser.add_argument('-m','--model', help='Path to the model path.',default='../deeplabv3_257_mv_gpu.tflite', type=str)
+parser.add_argument('-c', '--camera', help="Camera device id.", default=0, type=int)
 
 def img_to_tensor(image):
     image = cv2.resize(image, (257, 257))
@@ -29,10 +35,12 @@ def composite_mask(src, mask, width, height):
 
 
 def main():
-    cap = cv2.VideoCapture(0)
+
+    args = parser.parse_args()
+    cap = cv2.VideoCapture(args.camera)
     image_mask = ImageMask()
-    image_mask.load_interpreter('../deeplabv3_257_mv_gpu.tflite')
-    image_mask.threshold = 17
+    image_mask.load_interpreter(args.model)
+
     while True:
         ret, frame = cap.read()
         data = img_to_tensor(frame)

@@ -54,6 +54,15 @@ $ cd gb-cam
 $ gbcam
 ```
 
+* Options
+
+|option      |Description                  | Default                     |
+|:-----------|-----------------------------|-----------------------------|
+|-m(--model) |Path to the model path.      |deeplabv3_257_mv_gpu.tflite  |
+|-c(--camera)|Camera device id.            | 0                           |
+
+
+
 Camera startup and show window.
 
 ## Release
