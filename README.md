@@ -12,22 +12,10 @@ You can get the greenback capture using your normal webcam.
 * OS Windows, macOS or Linux
 * Python 3.7
 * Camera device.
+* Only x86
 
 ## Setup
 
-### Install tensorflow lite runtime.
-* macOS
-
-```
-pip3 install https://dl.google.com/coral/python/tflite_runtime-2.1.0-cp37-cp37m-macosx_10_14_x86_64.whl
-
-```
-
-* Windows10
-
-```
-pip3 install https://dl.google.com/coral/python/tflite_runtime-2.1.0.post1-cp37-cp37m-win_amd64.whl
-```
 
 ### Download trained model.
 
@@ -43,9 +31,11 @@ $ wget https://storage.googleapis.com/download.tensorflow.org/models/tflite/gpu/
 ```
 $ git clone https://github.com/masato-ka/gb-cam.git
 $ cd gb-cam
-$ pip install .
+$ pip install .[platform]
 $ cp <pre trained model path> .
 ```
+
+* You can choose platform from windows, osx and linux
 
 ## Usage
 
@@ -60,6 +50,9 @@ $ gbcam
 |:-----------|-----------------------------|-----------------------------|
 |-m(--model) |Path to the model path.      |deeplabv3_257_mv_gpu.tflite  |
 |-c(--camera)|Camera device id.            | 0                           |
+|-w(--width) |Camera device id.            | 640                         |
+|-h(--height) |Camera device id.           | 420                         |
+|-fps(--fps) |Camera device id.            | 30                         |
 
 
 
